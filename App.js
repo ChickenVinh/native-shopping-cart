@@ -1,12 +1,12 @@
-import 'react-native-gesture-handler';
-import React from 'react';
+import 'react-native-gesture-handler'
+import React from 'react'
 
 import ShopView from './components/ShopView'
 import CartView from './components/CartView'
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import { NavigationContainer } from '@react-navigation/native';
-import Icon from 'react-native-vector-icons/Entypo';
+import { NavigationContainer } from '@react-navigation/native'
+import Icon from 'react-native-vector-icons/Entypo'
 
 const Tab = createBottomTabNavigator();
 
