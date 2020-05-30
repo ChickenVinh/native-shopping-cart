@@ -1,7 +1,35 @@
 import React from 'react'
-import { Header, Content, Text, ListItem, CheckBox, Body, Card, Button, Title, Container } from 'native-base'
+import { Header, Content, Text, ListItem, CheckBox, Body, Card, Button, Title, Container, Thumbnail, Left, Right } from 'native-base'
+import { useSelector, useDispatch } from 'react-redux'
 
 const CartView = () => {
+    const state = useSelector(state => state)
+    const dispatch = useDispatch()
+
+    const createCartList = state.addedItems.length ? (
+        state.addedItems.map(item => {
+            return (
+                <ListItem noBorder key={item.id}>
+                    <Left>
+                        <Thumbnail square source={item.img} />
+                        <Text style={{ marginLeft: 35 }}>{item.quantity}x</Text>
+                    </Left>
+                    <Body>
+                        <Text>{item.title}</Text>
+                    </Body>
+                    <Right>
+                        <Text>{item.price * item.quantity}€</Text>
+                    </Right>
+                </ListItem>
+            )
+        })
+    ) :
+        (
+            <ListItem noBorder>
+                <Text>Nothing.</Text>
+            </ListItem>
+        )
+
     return (
         <Container>
             <Header>
@@ -11,15 +39,7 @@ const CartView = () => {
             </Header>
             <Content padder>
                 <Card>
-                    <ListItem noBorder>
-                        <Text>Item #1</Text>
-                    </ListItem>
-                    <ListItem noBorder>
-                        <Text>Item #2</Text>
-                    </ListItem>
-                    <ListItem noBorder>
-                        <Text>Item #3</Text>
-                    </ListItem>
+                    {createCartList}
                 </Card>
                 <Card>
                     <ListItem noBorder>
@@ -29,7 +49,7 @@ const CartView = () => {
                         </Body>
                     </ListItem>
                     <ListItem noBorder>
-                        <Text>Total: xxx$</Text>
+                        <Text style={{ fontWeight: 'bold' }}>Total: {state.total}€</Text>
                     </ListItem>
                     <ListItem noBorder>
                         <Button success rounded style={{ width: '100%', justifyContent: 'center' }}>
