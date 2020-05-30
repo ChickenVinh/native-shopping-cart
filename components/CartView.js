@@ -32,7 +32,7 @@ const CartView = () => {
                         <Text>Total: xxx$</Text>
                     </ListItem>
                     <ListItem noBorder>
-                        <Button success style={{ width: '100%', justifyContent: 'center' }}>
+                        <Button success rounded style={{ width: '100%', justifyContent: 'center' }}>
                             <Text>Checkout</Text>
                         </Button>
                     </ListItem>
